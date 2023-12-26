@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,15 +6,20 @@ using System.Threading.Tasks;
 
 namespace proect_adressbook_
 {
+
+    // Класс AddressBookManager управляет выполнением операций над адресной книгой через консольный интерфейс.
     public class AddressBookManager
     {
+        // Экземпляр класса AddressBook для работы с адресной книгой.
         private AddressBook addressBook = new AddressBook();
 
+        // Конструктор класса. При создании менеджера адресной книги происходит загрузка данных из файла.
         public AddressBookManager()
         {
             addressBook.LoadData();
         }
 
+        // Метод Run запускает консольное меню для взаимодействия с адресной книгой.
         public void Run()
         {
             while (true)
@@ -63,6 +68,7 @@ namespace proect_adressbook_
             }
         }
 
+        // Метод AddContact собирает данные нового контакта от пользователя и добавляет их в адресную книгу.
         private void AddContact()
         {
             Console.WriteLine("Введите данные нового контакта:");
@@ -77,6 +83,7 @@ namespace proect_adressbook_
             Console.Write("Адрес: ");
             string address = Console.ReadLine();
 
+            // Создание нового экземпляра класса Contact с введенными данными.
             Contact newContact = new Contact
             {
                 FirstName = firstName,
@@ -86,9 +93,11 @@ namespace proect_adressbook_
                 Address = address
             };
 
+            // Добавление нового контакта в адресную книгу.
             addressBook.AddContact(newContact);
         }
 
+        // Метод RemoveContact запрашивает у пользователя данные для удаления контакта и передает запрос в адресную книгу.
         private void RemoveContact()
         {
             Console.Write("Введите имя, фамилию или номер телефона контакта для удаления: ");
@@ -96,6 +105,7 @@ namespace proect_adressbook_
             addressBook.RemoveContact(deleteQuery);
         }
 
+        // Метод EditContact запрашивает у пользователя данные для редактирования контакта и передает запрос в адресную книгу.
         private void EditContact()
         {
             Console.Write("Введите имя, фамилию или номер телефона контакта для редактирования: ");
@@ -103,6 +113,7 @@ namespace proect_adressbook_
             addressBook.EditContact(editQuery);
         }
 
+        // Метод SearchContact запрашивает у пользователя данные для поиска контакта и передает запрос в адресную книгу.
         private void SearchContact()
         {
             Console.Write("Введите имя, фамилию или номер телефона для поиска: ");
@@ -110,6 +121,7 @@ namespace proect_adressbook_
             addressBook.SearchContact(searchQuery);
         }
 
+        // Метод DisplayAllContacts вызывает метод адресной книги для вывода всех контактов.
         private void DisplayAllContacts()
         {
             addressBook.DisplayAllContacts();
